@@ -13,6 +13,7 @@ import com.social_media_back.entity.UserInfo;
 @Repository
 public interface UserDao extends JpaRepository<UserInfo, Integer> {
 	
+	// 手機是否被註冊過
 	@Query(value = "SELECT COUNT(1) FROM user WHERE phone = :userPhone", nativeQuery = true)
 	public int existsByPhone(@Param("userPhone") String userPhone);
 	
@@ -27,4 +28,20 @@ public interface UserDao extends JpaRepository<UserInfo, Integer> {
 			@Param("userPhone") String userPhone,//
 			@Param("userEmail") String userEmail,//
 			@Param("userPassword") String userPassword);
+	
+	// 用手機找對應密碼
+	@Query(value = "SELECT password FROM user WHERE phone = :userPhone", nativeQuery = true)
+	public String checkPwd(@Param("userPhone") String userPhone);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

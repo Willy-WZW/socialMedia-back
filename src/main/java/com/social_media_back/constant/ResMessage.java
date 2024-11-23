@@ -2,8 +2,10 @@ package com.social_media_back.constant;
 
 public enum ResMessage {
 	
-	SUCCESS(200, "Success!"),
-	PHONENUMBEREXISTS(400, "Phone number exists !");//
+	SUCCESS(200, "Success!"),//
+	PHONENUMBEREXISTS(400, "Phone number exists !"),//
+	PHONENUMBERNOTFOUND(404, "Phone number not found !"),//
+	WRONGPASSWORD(400, "Wrong password !");
 	
 	private int code;
 	
