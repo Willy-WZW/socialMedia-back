@@ -1,0 +1,63 @@
+User:
+手機是否被註冊過
+"SELECT COUNT(1) FROM `user` WHERE phone = :userPhone"
+
+新增user 資料
+"INSERT INTO `user` "
+			+ " (user_name, phone, email, password)"
+			+ " values "
+			+ " (:userName, :userPhone, :userEmail, :userPassword)"
+			
+Stored Procedure 用手機找對應密碼
+DELIMITER //
+
+CREATE PROCEDURE GetPasswordByPhone(IN phoneNumber VARCHAR(10))
+BEGIN
+    SELECT password FROM user WHERE phone = phoneNumber;
+END //
+
+DELIMITER ;
+
+取得 User 資料
+SELECT * FROM `user` WHERE phone = :userPhone
+
+更新user 資料
+UPDATE `user` "
+			+ " SET "
+			+ " user_name = :userName, "
+			+ " cover_image = :coverImage, "
+			+ " biography = :introduce "
+			+ " WHERE "
+			+ " user_id = :userId
+
+查詢ID 是否存在
+SELECT COUNT(1) FROM `user` WHERE user_id = :userId
+
+Post:
+新增POST資料
+INSERT INTO post "
+			+ " (user_id, content, post_image, created_at) "
+			+ " value "
+			+ " (:userId, :postContent, :postImage, :createTime)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+CREATE SCHEMA `social_media` ;
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(45) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `password` varchar(60) NOT NULL,
+  `cover_image` longtext,
+  `biography` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+)
+
+CREATE TABLE IF NOT EXISTS `post` (
+  `post_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `content` text NOT NULL,
+  `post_image` longtext,
+  `created_at` date DEFAULT NULL,
+  `create_at` date NOT NULL,
+  `pos_image` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`post_id`),
+  KEY `user_idfk_idx` (`user_id`),
+  CONSTRAINT `user_idfk` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+)
+
+CREATE TABLE IF NOT EXISTS `comment` (
+  `comment_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `post_id` int NOT NULL,
+  `content` text NOT NULL,
+  `created_at` date DEFAULT NULL,
+  PRIMARY KEY (`comment_id`),
+  KEY `post_idfk_two_idx` (`post_id`),
+  KEY `user_idfk_one_idx` (`user_id`),
+  CONSTRAINT `post_idfk_two` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_idfk_one` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) 
