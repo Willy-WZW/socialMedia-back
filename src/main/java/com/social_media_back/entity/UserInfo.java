@@ -2,6 +2,8 @@ package com.social_media_back.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -9,30 +11,31 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "user")
 public class UserInfo {
-	
+
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@Column(name = "user_id")
 	private int userId;
-	
+
 	@NotBlank(message = "User name cannot be null or empty !")
 	@Column(name = "user_name")
 	private String userName;
-	
+
 	@NotBlank(message = "Phone cannot be null or empty !")
 	@Column(name = "phone")
 	private String userPhone;
-	
+
 	@NotBlank(message = "Email cannot be null or empty !")
 	@Column(name = "email")
 	private String userEmail;
-	
+
 	@NotBlank(message = "Password cannot be null or empty !")
 	@Column(name = "password")
 	private String userPassword;
-	
+
 	@Column(name = "cover_image")
 	private String coverImage;
-	
+
 	@Column(name = "biography")
 	private String introduce;
 
@@ -54,17 +57,14 @@ public class UserInfo {
 		this.coverImage = coverImage;
 		this.introduce = introduce;
 	}
-	
-	public UserInfo(int userId, @NotBlank(message = "User name cannot be null or empty !") String userName,
-			@NotBlank(message = "Phone cannot be null or empty !") String userPhone,
-			@NotBlank(message = "Email cannot be null or empty !") String userEmail,
-			@NotBlank(message = "Password cannot be null or empty !") String userPassword) {
+
+	public UserInfo(int userId, String userName, String userPhone, String coverImage, String introduce) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.userPhone = userPhone;
-		this.userEmail = userEmail;
-		this.userPassword = userPassword;
+		this.coverImage = coverImage;
+		this.introduce = introduce;
 	}
 
 	public int getUserId() {
@@ -123,7 +123,4 @@ public class UserInfo {
 		this.introduce = introduce;
 	}
 
-	
-	
-	
 }

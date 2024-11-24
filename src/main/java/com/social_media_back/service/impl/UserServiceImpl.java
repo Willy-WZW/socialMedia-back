@@ -5,11 +5,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.social_media_back.constant.ResMessage;
+import com.social_media_back.entity.UserInfo;
 import com.social_media_back.repository.UserDao;
 import com.social_media_back.service.ifs.UserService;
 import com.social_media_back.vo.BasicRes;
 import com.social_media_back.vo.CheckPersonReq;
 import com.social_media_back.vo.CreateInfoReq;
+import com.social_media_back.vo.UpdateUserReq;
+import com.social_media_back.vo.UserInfoReq;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -49,6 +52,24 @@ public class UserServiceImpl implements UserService {
 			return new BasicRes(ResMessage.WRONGPASSWORD.getCode(),//
 					ResMessage.WRONGPASSWORD.getMessage());
 		}
+		return new BasicRes(ResMessage.SUCCESS.getCode(),ResMessage.SUCCESS.getMessage());
+	}
+
+	@Override
+	public UserInfo selectUser(UserInfoReq req) {
+		return userDao.selectUser(req.getUserPhone());
+	}
+
+	@Override
+	public BasicRes updateUserInfo(UpdateUserReq req) {
+		int userId = req.getUserId();
+		// userId 不存在
+		if (userDao.existsById(userId) == 0) {
+			return new BasicRes(ResMessage.USERIDNOTFOUND.getCode(),//
+					ResMessage.USERIDNOTFOUND.getMessage());
+		}
+		
+		userDao.updateUserInfo(userId, req.getUserName(), req.getCoverImage(), req.getIntroduce());
 		return new BasicRes(ResMessage.SUCCESS.getCode(),ResMessage.SUCCESS.getMessage());
 	}
 

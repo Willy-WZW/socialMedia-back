@@ -5,6 +5,7 @@ public enum ResMessage {
 	SUCCESS(200, "Success!"),//
 	PHONENUMBEREXISTS(400, "Phone number exists !"),//
 	PHONENUMBERNOTFOUND(404, "Phone number not found !"),//
+	USERIDNOTFOUND(404, "User id not found !"),//
 	WRONGPASSWORD(400, "Wrong password !");
 	
 	private int code;
