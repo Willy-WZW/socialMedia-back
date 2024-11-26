@@ -28,10 +28,10 @@ public class PostInfo {
 	@Column(name = "content")
 	private String postContent;
 	
-	@Column(name = "pos_image")
+	@Column(name = "post_image")
 	private String postImage;
 	
-	@Column(name = "create_at")
+	@Column(name = "created_at")
 	private LocalDate createTime;
 
 	public PostInfo() {

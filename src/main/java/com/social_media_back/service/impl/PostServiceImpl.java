@@ -1,6 +1,7 @@
 package com.social_media_back.service.impl;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.social_media_back.constant.ResMessage;
+import com.social_media_back.entity.PostInfo;
 import com.social_media_back.repository.PostDao;
 import com.social_media_back.repository.UserDao;
 import com.social_media_back.service.ifs.PostService;
@@ -38,6 +40,11 @@ public class PostServiceImpl implements PostService {
 		}
 		postDao.insertPost(userId, req.getPostContent(), req.getPostImage(), req.getCreateTime());
 		return new BasicRes(ResMessage.SUCCESS.getCode(),ResMessage.SUCCESS.getMessage());
+	}
+
+	@Override
+	public List<PostInfo> selectAll() {
+		return postDao.selectAllPost();
 	}
 	
 	

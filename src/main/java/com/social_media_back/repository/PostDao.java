@@ -1,6 +1,7 @@
 package com.social_media_back.repository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -29,5 +30,8 @@ public interface PostDao extends JpaRepository<PostInfo, Integer> {
 	
 	@Query(value = "SELECT COUNT(1) FROM post WHERE user_id = :userId", nativeQuery = true)
 	public int selectById(@Param("userId") int userId);
+	
+	@Query(value = "SELECT * FROM post", nativeQuery = true)
+	public List<PostInfo> selectAllPost();
 	
 }
