@@ -17,8 +17,6 @@ CREATE TABLE IF NOT EXISTS `post` (
   `content` text NOT NULL,
   `post_image` longtext,
   `created_at` date DEFAULT NULL,
-  `create_at` date NOT NULL,
-  `pos_image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`post_id`),
   KEY `user_idfk_idx` (`user_id`),
   CONSTRAINT `user_idfk` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE

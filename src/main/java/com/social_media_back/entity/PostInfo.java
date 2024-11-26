@@ -31,7 +31,6 @@ public class PostInfo {
 	@Column(name = "pos_image")
 	private String postImage;
 	
-	@NotNull(message = "Create time cannot be null !")
 	@Column(name = "create_at")
 	private LocalDate createTime;
 
@@ -39,9 +38,7 @@ public class PostInfo {
 		super();
 	}
 
-	public PostInfo(@NotNull(message = "User Id cannot be null !") int userId,
-			@NotBlank(message = "Content cannot be null or empty!") String postContent, String postImage,
-			@NotNull(message = "Create time cannot be null !") LocalDate createTime) {
+	public PostInfo(int userId, String postContent, String postImage, LocalDate createTime) {
 		super();
 		this.userId = userId;
 		this.postContent = postContent;
