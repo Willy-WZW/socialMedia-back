@@ -36,7 +36,8 @@ public interface PostDao extends JpaRepository<PostInfo, Integer> {
 			+ " new com.social_media_back.vo.AllPostInfoRes( p.postId, p.userId, u.userName, p.postContent, p.postImage, p.createTime )"
 			+ " FROM PostInfo p "
 			+ " JOIN UserInfo u "
-			+ " ON p.userId = u.userId")
+			+ " ON p.userId = u.userId "
+			+ " ORDER BY p.createTime DESC")
 	public List<AllPostInfoRes> selectAllPost();
 	
 }
