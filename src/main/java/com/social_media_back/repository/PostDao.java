@@ -1,6 +1,6 @@
 package com.social_media_back.repository;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.social_media_back.entity.PostInfo;
+import com.social_media_back.vo.AllPostInfoRes;
 
 @Repository
 public interface PostDao extends JpaRepository<PostInfo, Integer> {
@@ -26,12 +27,16 @@ public interface PostDao extends JpaRepository<PostInfo, Integer> {
 			@Param("userId") int userId, //
 			@Param("postContent") String postContent, //
 			@Param("postImage") String postImage, //
-			@Param("createTime") LocalDate createTime);
+			@Param("createTime") LocalDateTime createTime);
 	
 	@Query(value = "SELECT COUNT(1) FROM post WHERE user_id = :userId", nativeQuery = true)
 	public int selectById(@Param("userId") int userId);
 	
-	@Query(value = "SELECT * FROM post", nativeQuery = true)
-	public List<PostInfo> selectAllPost();
+	@Query(value = "SELECT "
+			+ " new com.social_media_back.vo.AllPostInfoRes( p.postId, p.userId, u.userName, p.postContent, p.postImage, p.createTime )"
+			+ " FROM PostInfo p "
+			+ " JOIN UserInfo u "
+			+ " ON p.userId = u.userId")
+	public List<AllPostInfoRes> selectAllPost();
 	
 }

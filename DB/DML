@@ -34,12 +34,15 @@ UPDATE `user` "
 SELECT COUNT(1) FROM `user` WHERE user_id = :userId
 
 Post:
+
 新增POST資料
-INSERT INTO post "
+"INSERT INTO post "
 			+ " (user_id, content, post_image, created_at) "
 			+ " value "
-			+ " (:userId, :postContent, :postImage, :createTime)
+			+ " (:userId, :postContent, :postImage, :createTime)"
 
+查詢所有POST資料
+SELECT p.post_id, p.user_id, u.user_name, p.content, p.post_image, p.created_at from post AS p JOIN `user` AS u ON p.user_id = u.user_id;
 
 
 

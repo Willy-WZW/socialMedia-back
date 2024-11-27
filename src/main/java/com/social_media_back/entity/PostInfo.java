@@ -1,6 +1,7 @@
 package com.social_media_back.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "post")
@@ -32,13 +35,14 @@ public class PostInfo {
 	private String postImage;
 	
 	@Column(name = "created_at")
-	private LocalDate createTime;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime createTime;
 
 	public PostInfo() {
 		super();
 	}
 
-	public PostInfo(int userId, String postContent, String postImage, LocalDate createTime) {
+	public PostInfo(int userId, String postContent, String postImage, LocalDateTime createTime) {
 		super();
 		this.userId = userId;
 		this.postContent = postContent;
@@ -78,11 +82,11 @@ public class PostInfo {
 		this.postImage = postImage;
 	}
 
-	public LocalDate getCreateTime() {
+	public LocalDateTime getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(LocalDate createTime) {
+	public void setCreateTime(LocalDateTime createTime) {
 		this.createTime = createTime;
 	}
 

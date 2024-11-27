@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.social_media_back.entity.PostInfo;
 import com.social_media_back.service.ifs.PostService;
+import com.social_media_back.vo.AllPostInfoRes;
 import com.social_media_back.vo.BasicRes;
 import com.social_media_back.vo.NewPostReq;
 
@@ -27,7 +27,7 @@ public class PostController {
 	}
 	
 	@GetMapping(value = "post/all")
-	public List<PostInfo> selectAll(){
+	public List<AllPostInfoRes> selectAll(){
 		return postservice.selectAll();
 	}
 	
