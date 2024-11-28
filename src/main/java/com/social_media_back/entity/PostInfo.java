@@ -1,6 +1,5 @@
 package com.social_media_back.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;

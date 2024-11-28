@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.social_media_back.service.ifs.PostService;
 import com.social_media_back.vo.AllPostInfoRes;
 import com.social_media_back.vo.BasicRes;
+import com.social_media_back.vo.EditPostReq;
 import com.social_media_back.vo.NewPostReq;
 
 @RestController
@@ -29,6 +30,11 @@ public class PostController {
 	@GetMapping(value = "post/all")
 	public List<AllPostInfoRes> selectAll(){
 		return postservice.selectAll();
+	}
+	
+	@PostMapping(value = "post/update")
+	public BasicRes editPost(@Valid @RequestBody EditPostReq req) {
+		return postservice.editPost(req);
 	}
 	
 }

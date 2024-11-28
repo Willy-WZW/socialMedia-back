@@ -40,4 +40,30 @@ public interface PostDao extends JpaRepository<PostInfo, Integer> {
 			+ " ORDER BY p.createTime DESC")
 	public List<AllPostInfoRes> selectAllPost();
 	
+	@Query(value = "SELECT EXISTS "
+			+ " (SELECT 1 FROM post WHERE post_id = :postId)", nativeQuery = true)
+	public int selectPostId(@Param("postId") int postId);
+	
+	@Query(value = "SELECT EXISTS"
+			+ " (SELECT 1 "
+			+ " FROM post p "
+			+ " JOIN `user` u ON p.user_id = u.user_id "
+			+ " WHERE p.post_id = :postId AND u.user_id = :userId)", nativeQuery = true)
+	public int matchingUserId (@Param("postId") int postId, @Param("userId") int userId);
+	
+	@Modifying
+	@Transactional
+	@Query(value = "UPDATE post "
+			+ " SET "
+			+ " content = :postContent, "
+			+ " post_image = :postImage, "
+			+ " created_at = :createTime "
+			+ " WHERE "
+			+ " post_id = :postId", nativeQuery = true)
+	public int updatePostContent (//
+			@Param("postId") int postId, //
+			@Param("postContent") String postContent, //
+			@Param("postImage") String postImage, //
+			@Param("createTime") LocalDateTime createTime);
+	
 }

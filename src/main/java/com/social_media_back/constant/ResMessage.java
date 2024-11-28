@@ -6,7 +6,9 @@ public enum ResMessage {
 	PHONENUMBEREXISTS(400, "Phone number exists !"),//
 	PHONENUMBERNOTFOUND(404, "Phone number not found !"),//
 	USERIDNOTFOUND(404, "User id not found !"),//
-	WRONGPASSWORD(400, "Wrong password !");
+	WRONGPASSWORD(400, "Wrong password !"),//
+	POSTIDNOTFOUND(404, "Post id not found !"),//
+	PERMISSIONDENIED(403, "Permission Denied !");
 	
 	private int code;
 	
