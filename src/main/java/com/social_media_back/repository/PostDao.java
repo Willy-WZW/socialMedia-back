@@ -66,4 +66,9 @@ public interface PostDao extends JpaRepository<PostInfo, Integer> {
 			@Param("postImage") String postImage, //
 			@Param("createTime") LocalDateTime createTime);
 	
+	@Modifying
+	@Transactional
+	@Query(value = "DELETE FROM post WHERE post_id = :postId", nativeQuery = true)
+	public int deletePost(@Param("postId") int postId);
+	
 }
