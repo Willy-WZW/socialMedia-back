@@ -44,7 +44,27 @@ Post:
 查詢所有POST資料
 SELECT p.post_id, p.user_id, u.user_name, p.content, p.post_image, p.created_at from post AS p JOIN `user` AS u ON p.user_id = u.user_id ORDER BY p.created_at DESC;
 
+查詢PostId是否存在
+"SELECT EXISTS (SELECT 1 FROM post WHERE post_id = :postId)"
 
+查詢userId是否相符
+"SELECT EXISTS"
+			+ " (SELECT 1 "
+			+ " FROM post p "
+			+ " JOIN `user` u ON p.user_id = u.user_id "
+			+ " WHERE p.post_id = :postId AND u.user_id = :userId)"
+			
+更新POST資料
+"UPDATE post "
+			+ " SET "
+			+ " content = :postContent, "
+			+ " post_image = :postImage, "
+			+ " created_at = :createTime "
+			+ " WHERE "
+			+ " post_id = :postId"
+			
+刪除POST資料
+"DELETE FROM post WHERE post_id = :postId"
 
 
 
