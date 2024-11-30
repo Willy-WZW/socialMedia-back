@@ -8,7 +8,8 @@ public enum ResMessage {
 	USERIDNOTFOUND(404, "User id not found !"),//
 	WRONGPASSWORD(400, "Wrong password !"),//
 	POSTIDNOTFOUND(404, "Post id not found !"),//
-	PERMISSIONDENIED(403, "Permission Denied !");
+	PERMISSIONDENIED(403, "Permission Denied !"),//
+	COMMENTCANNOTBENULLORBLANK(400, "Comment cannot be null or blank !");
 	
 	private int code;
 	
